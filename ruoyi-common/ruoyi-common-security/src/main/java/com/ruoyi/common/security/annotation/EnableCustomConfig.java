@@ -1,11 +1,12 @@
 package com.ruoyi.common.security.annotation;
 
-import java.lang.annotation.*;
+import com.ruoyi.common.security.config.ApplicationConfig;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.scheduling.annotation.EnableAsync;
-import com.ruoyi.common.security.config.ApplicationConfig;
+
+import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
@@ -19,7 +20,6 @@ import com.ruoyi.common.security.config.ApplicationConfig;
 @EnableAsync
 // 自动加载类
 @Import({ApplicationConfig.class})
-public @interface EnableCustomConfig
-{
+public @interface EnableCustomConfig {
 
 }
