@@ -20,14 +20,11 @@ public class BlackListUrlFilter extends AbstractGatewayFilterFactory<BlackListUr
     @Override
     public GatewayFilter apply(Config config) {
         return (exchange, chain) -> {
-
             String url = exchange.getRequest().getURI().getPath();
             if (config.matchBlacklist(url)) {
                 ServerHttpResponse response = exchange.getResponse();
-                return exchange.getResponse().writeWith(
-                        Mono.just(response.bufferFactory().wrap(JSON.toJSONBytes(AjaxResult.error("服务拒绝访问")))));
+                return exchange.getResponse().writeWith(Mono.just(response.bufferFactory().wrap(JSON.toJSONBytes(AjaxResult.error("服务拒绝访问")))));
             }
-
             return chain.filter(exchange);
         };
     }
@@ -57,5 +54,4 @@ public class BlackListUrlFilter extends AbstractGatewayFilterFactory<BlackListUr
             });
         }
     }
-
 }

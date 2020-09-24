@@ -39,7 +39,6 @@ public class TokenService {
         loginUser.setUserid(loginUser.getSysUser().getUserId());
         loginUser.setUsername(loginUser.getSysUser().getUserName());
         refreshToken(loginUser);
-
         // 保存或更新用户token
         Map<String, Object> map = new HashMap<>();
         map.put("access_token", token);
@@ -50,8 +49,6 @@ public class TokenService {
 
     /**
      * 获取用户身份信息
-     *
-     * @return 用户信息
      */
     public LoginUser getLoginUser() {
         return getLoginUser(ServletUtils.getRequest());
@@ -59,8 +56,6 @@ public class TokenService {
 
     /**
      * 获取用户身份信息
-     *
-     * @return 用户信息
      */
     public LoginUser getLoginUser(HttpServletRequest request) {
         // 获取请求携带的令牌
@@ -73,6 +68,9 @@ public class TokenService {
         return null;
     }
 
+    /**
+     * 删除用户身份信息
+     */
     public void delLoginUser(String token) {
         if (StringUtils.isNotEmpty(token)) {
             String userKey = getTokenKey(token);
@@ -82,8 +80,6 @@ public class TokenService {
 
     /**
      * 刷新令牌有效期
-     *
-     * @param loginUser 登录信息
      */
     public Long refreshToken(LoginUser loginUser) {
         loginUser.setLoginTime(System.currentTimeMillis());

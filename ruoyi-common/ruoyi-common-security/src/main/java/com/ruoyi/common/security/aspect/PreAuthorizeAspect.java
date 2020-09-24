@@ -182,7 +182,6 @@ public class PreAuthorizeAspect {
      * @return 用户是否具备某权限
      */
     private boolean hasPermissions(Collection<String> authorities, String permission) {
-        return authorities.stream().filter(StringUtils::hasText)
-                .anyMatch(x -> ALL_PERMISSION.contains(x) || PatternMatchUtils.simpleMatch(permission, x));
+        return authorities.stream().filter(StringUtils::hasText).anyMatch(x -> ALL_PERMISSION.contains(x) || PatternMatchUtils.simpleMatch(permission, x));
     }
 }

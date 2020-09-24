@@ -17,6 +17,7 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
      * Swagger2默认的url后缀
      */
     public static final String SWAGGER2URL = "/v2/api-docs";
+
     /**
      * 网关路由
      */
@@ -28,8 +29,6 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
 
     /**
      * 聚合其他服务接口
-     *
-     * @return
      */
     @Override
     public List<SwaggerResource> get() {

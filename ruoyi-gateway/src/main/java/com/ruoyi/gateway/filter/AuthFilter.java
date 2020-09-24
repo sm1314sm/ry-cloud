@@ -66,14 +66,12 @@ public class AuthFilter implements GlobalFilter, Ordered {
         if (StringUtils.isBlank(userid) || StringUtils.isBlank(username)) {
             return setUnauthorizedResponse(exchange, "令牌验证失败");
         }
-
         // 设置过期时间
         redisService.expire(getTokenKey(token), EXPIRE_TIME);
         // 设置用户信息到请求
         ServerHttpRequest mutableReq = exchange.getRequest().mutate().header(CacheConstants.DETAILS_USER_ID, userid)
                 .header(CacheConstants.DETAILS_USERNAME, username).build();
         ServerWebExchange mutableExchange = exchange.mutate().request(mutableReq).build();
-
         return chain.filter(mutableExchange);
     }
 
@@ -81,9 +79,7 @@ public class AuthFilter implements GlobalFilter, Ordered {
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
         response.setStatusCode(HttpStatus.OK);
-
         log.error("[鉴权异常处理]请求路径:{}", exchange.getRequest().getPath());
-
         return response.writeWith(Mono.fromSupplier(() -> {
             DataBufferFactory bufferFactory = response.bufferFactory();
             return bufferFactory.wrap(JSON.toJSONBytes(R.fail(msg)));
