@@ -595,13 +595,12 @@ public class ExcelUtil<T> {
      */
     public void addStatisticsRow() {
         if (statistics.size() > 0) {
-            Cell cell = null;
+            Cell cell;
             Row row = sheet.createRow(sheet.getLastRowNum() + 1);
             Set<Integer> keys = statistics.keySet();
             cell = row.createCell(0);
             cell.setCellStyle(styles.get("total"));
             cell.setCellValue("合计");
-
             for (Integer key : keys) {
                 cell = row.createCell(key);
                 cell.setCellStyle(styles.get("total"));
@@ -667,7 +666,6 @@ public class ExcelUtil<T> {
             if (field.isAnnotationPresent(Excel.class)) {
                 putToField(field, field.getAnnotation(Excel.class));
             }
-
             // 多注解
             if (field.isAnnotationPresent(Excels.class)) {
                 Excels attrs = field.getAnnotation(Excels.class);
@@ -705,7 +703,7 @@ public class ExcelUtil<T> {
     public void createSheet(double sheetNo, int index) {
         this.sheet = wb.createSheet();
         this.styles = createStyles(wb);
-        // 设置工作表的名称.
+        // 设置工作表的名称
         if (sheetNo == 0) {
             wb.setSheetName(index, sheetName);
         } else {
@@ -722,7 +720,7 @@ public class ExcelUtil<T> {
      */
     public Object getCellValue(Row row, int column) {
         if (row == null) {
-            return row;
+            return null;
         }
         Object val = "";
         try {
@@ -746,7 +744,6 @@ public class ExcelUtil<T> {
                 } else if (cell.getCellTypeEnum() == CellType.ERROR) {
                     val = cell.getErrorCellValue();
                 }
-
             }
         } catch (Exception e) {
             return val;

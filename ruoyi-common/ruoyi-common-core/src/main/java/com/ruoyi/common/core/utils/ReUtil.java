@@ -54,7 +54,6 @@ public class ReUtil {
         if (StringUtils.isEmpty(content)) {
             return StringUtils.EMPTY;
         }
-
         final Matcher matcher = pattern.matcher(content);
         boolean result = matcher.find();
         if (result) {
@@ -86,8 +85,7 @@ public class ReUtil {
      * @param collection 返回的集合类型
      * @return 结果集
      */
-    public static <T extends Collection<String>> T findAll(Pattern pattern, CharSequence content, int group,
-                                                           T collection) {
+    public static <T extends Collection<String>> T findAll(Pattern pattern, CharSequence content, int group, T collection) {
         if (null == pattern || null == content) {
             return null;
         }
@@ -128,7 +126,6 @@ public class ReUtil {
         if (StringUtils.isBlank(content)) {
             return StringUtils.EMPTY;
         }
-
         final StringBuilder builder = new StringBuilder();
         int len = content.length();
         char current;

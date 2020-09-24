@@ -16,6 +16,5 @@ import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 public class RuoYiSystemApplication {
     public static void main(String[] args) {
         SpringApplication.run(RuoYiSystemApplication.class, args);
-
     }
 }
