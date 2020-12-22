@@ -16,7 +16,7 @@
     </description>
     
     <dependencies>
-        <!-- SpringCloud Ailibaba Nacos -->
+        <!-- SpringCloud Ailibaba Nacos discovery -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
@@ -52,7 +52,7 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 		
-        <!-- RuoYi Common Security-->
+        <!-- RuoYi Common Security -->
         <dependency>
             <groupId>com.ruoyi</groupId>
             <artifactId>ruoyi-common-security</artifactId>

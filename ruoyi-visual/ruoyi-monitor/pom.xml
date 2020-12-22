@@ -23,7 +23,7 @@
             <version>${spring-boot-admin.version}</version>
         </dependency>
 
-        <!-- SpringCloud Ailibaba Nacos -->
+        <!-- SpringCloud Ailibaba Nacos discovery -->
         <dependency>
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
