@@ -24,6 +24,9 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
     @Autowired
     private RouteLocator routeLocator;
 
+    /**
+     * 网关配置
+     */
     @Autowired
     private GatewayProperties gatewayProperties;
 

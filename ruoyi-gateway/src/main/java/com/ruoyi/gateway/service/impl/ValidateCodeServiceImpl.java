@@ -59,6 +59,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
             image = captchaProducer.createImage(capStr);
         }
 
+        // 把验证码保存在缓存中
         redisService.setCacheObject(verifyKey, code, Constants.CAPTCHA_EXPIRATION, TimeUnit.MINUTES);
         // 转换流信息写出
         FastByteArrayOutputStream os = new FastByteArrayOutputStream();
@@ -67,7 +68,6 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         } catch (IOException e) {
             return AjaxResult.error(e.getMessage());
         }
-
         AjaxResult ajax = AjaxResult.success();
         ajax.put("uuid", uuid);
         ajax.put("img", Base64.encode(os.toByteArray()));
@@ -88,7 +88,7 @@ public class ValidateCodeServiceImpl implements ValidateCodeService {
         String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
         String captcha = redisService.getCacheObject(verifyKey);
         redisService.deleteObject(verifyKey);
-
+        // 判断验证码是否正确
         if (!code.equalsIgnoreCase(captcha)) {
             throw new CaptchaException("验证码错误");
         }

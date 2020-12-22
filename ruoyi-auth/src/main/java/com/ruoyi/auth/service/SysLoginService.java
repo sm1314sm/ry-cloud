@@ -26,7 +26,7 @@ public class SysLoginService {
     private RemoteUserService remoteUserService;
 
     /**
-     * 登录
+     * 用户登录
      */
     public LoginUser login(String username, String password) {
         // 用户名或密码为空 错误
@@ -73,6 +73,9 @@ public class SysLoginService {
         return userInfo;
     }
 
+    /**
+     * 用户退出
+     */
     public void logout(String loginName) {
         remoteLogService.saveLogininfor(loginName, Constants.LOGOUT, "退出成功");
     }

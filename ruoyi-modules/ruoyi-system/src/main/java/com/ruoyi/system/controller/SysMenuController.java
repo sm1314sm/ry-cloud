@@ -123,8 +123,6 @@ public class SysMenuController extends BaseController {
 
     /**
      * 获取路由信息
-     *
-     * @return 路由信息
      */
     @GetMapping("getRouters")
     public AjaxResult getRouters() {

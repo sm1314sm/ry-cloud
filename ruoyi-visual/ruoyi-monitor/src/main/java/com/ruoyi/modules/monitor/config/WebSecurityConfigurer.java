@@ -22,10 +22,10 @@ public class WebSecurityConfigurer extends WebSecurityConfigurerAdapter {
         SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
         successHandler.setTargetUrlParameter("redirectTo");
         successHandler.setDefaultTargetUrl(adminContextPath + "/");
-
         http
                 .headers().frameOptions().disable()
-                .and().authorizeRequests()
+                .and()
+                .authorizeRequests()
                 .antMatchers(adminContextPath + "/assets/**"
                         , adminContextPath + "/login"
                         , adminContextPath + "/actuator/**"
