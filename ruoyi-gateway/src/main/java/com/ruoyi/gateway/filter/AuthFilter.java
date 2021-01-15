@@ -52,10 +52,12 @@ public class AuthFilter implements GlobalFilter, Ordered {
         if (StringUtils.matches(url, ignoreWhite.getWhites())) {
             return chain.filter(exchange);
         }
+        // 获取请求中的token
         String token = getToken(exchange.getRequest());
         if (StringUtils.isBlank(token)) {
             return setUnauthorizedResponse(exchange, "令牌不能为空");
         }
+        // 从redis中获取登录账号
         String userStr = sops.get(getTokenKey(token));
         if (StringUtils.isNull(userStr)) {
             return setUnauthorizedResponse(exchange, "登录状态已过期");
@@ -75,6 +77,9 @@ public class AuthFilter implements GlobalFilter, Ordered {
         return chain.filter(mutableExchange);
     }
 
+    /**
+     * 鉴权失败返回
+     */
     private Mono<Void> setUnauthorizedResponse(ServerWebExchange exchange, String msg) {
         ServerHttpResponse response = exchange.getResponse();
         response.getHeaders().setContentType(MediaType.APPLICATION_JSON);
@@ -86,6 +91,9 @@ public class AuthFilter implements GlobalFilter, Ordered {
         }));
     }
 
+    /**
+     * 获取登录账号key
+     */
     private String getTokenKey(String token) {
         return CacheConstants.LOGIN_TOKEN_KEY + token;
     }
